@@ -60,6 +60,9 @@ Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
 
 Plug 'previm/previm'
 
+Plug 'nvim-treesitter/nvim-treesitter'
+Plug 'nvim-treesitter/nvim-treesitter-context'
+
 call plug#end()
 "==============================================================================
 
@@ -127,6 +130,20 @@ augroup END
 
 lua << END
 require('lualine').setup()
+
+require'nvim-treesitter.configs'.setup {
+  highlight = {
+    enable = true,
+  },
+  ensure_installed = { "python", "javascript", "typescript", "vue", "ruby" }
+}
+
+require('treesitter-context').setup {
+  enable = true,
+  default = {
+    patterns = { "class", "def", "function" }
+  }
+}
 END
 
 
