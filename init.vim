@@ -23,9 +23,10 @@ set hls                "検索した文字をハイライトする
 "==============================================================================
 " CHAD
 " \vでCHADを開く
-nnoremap <leader>v <cmd>CHADopen<cr>
+" nnoremap <leader>v <cmd>CHADopen<cr>
 "==============================================================================
 
+nnoremap <space>e <cmd>CocCommand explorer<CR>
 
 
 "==============================================================================
@@ -39,6 +40,12 @@ inoremap <C-j> <Down>
 inoremap <C-k> <Up>
 inoremap <C-h> <Left>
 inoremap <C-l> <Right>
+
+nnoremap <S-w> k
+nnoremap <S-a> h
+nnoremap <S-s> j
+nnoremap <S-d> l
+
 "==============================================================================
 
 
@@ -56,14 +63,22 @@ Plug 'voldikss/vim-floaterm'
 Plug 'nvim-lualine/lualine.nvim'
 Plug 'kyazdani42/nvim-web-devicons'
 
+" colorscheme
+Plug 'navarasu/onedark.nvim'
+Plug "rafamadriz/neon"
 Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
+Plug 'Yazeed1s/minimal.nvim'
+
 
 Plug 'previm/previm'
 
 Plug 'nvim-treesitter/nvim-treesitter'
 Plug 'nvim-treesitter/nvim-treesitter-context'
 
+Plug 'vim-test/vim-test'
+
 call plug#end()
+
 "==============================================================================
 
 
@@ -112,6 +127,7 @@ inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm()
 nnoremap <silent> <leader>rf <Plug>(coc-references)
 nnoremap <silent> <leader>h :<C-u>call CocAction('doHover')<CR>
 
+let g:coc_global_extensions = ['coc-tsserver', 'coc-prettier', 'coc-eslint', 'coc-vetur', 'coc-explorer', 'coc-solargraph']
 
 "==============================================================================
 
@@ -144,8 +160,12 @@ require('treesitter-context').setup {
     patterns = { "class", "def", "function" }
   }
 }
+
+require('onedark').setup {
+    style = 'dark'
+}
+require('onedark').load()
+
 END
 
-
-colorscheme tokyonight
 
