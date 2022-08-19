@@ -63,9 +63,11 @@ Plug 'voldikss/vim-floaterm'
 Plug 'nvim-lualine/lualine.nvim'
 Plug 'kyazdani42/nvim-web-devicons'
 
+Plug 'rcarriga/nvim-notify'
+Plug 'romgrk/barbar.nvim'
+Plug 'glepnir/dashboard-nvim'
 " colorscheme
 Plug 'navarasu/onedark.nvim'
-Plug "rafamadriz/neon"
 Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
 Plug 'Yazeed1s/minimal.nvim'
 
@@ -127,7 +129,7 @@ inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm()
 nnoremap <silent> <leader>rf <Plug>(coc-references)
 nnoremap <silent> <leader>h :<C-u>call CocAction('doHover')<CR>
 
-let g:coc_global_extensions = ['coc-tsserver', 'coc-prettier', 'coc-eslint', 'coc-vetur', 'coc-explorer', 'coc-solargraph']
+let g:coc_global_extensions = ['coc-lists', 'coc-tsserver', 'coc-prettier', 'coc-eslint', 'coc-vetur', 'coc-explorer', 'coc-solargraph']
 
 "==============================================================================
 
@@ -142,7 +144,6 @@ augroup setAutoCompile
     autocmd BufWritePost *.rb :!rubocop -a %:p
 augroup END
 "==============================================================================
-
 
 lua << END
 require('lualine').setup()
@@ -166,6 +167,40 @@ require('onedark').setup {
 }
 require('onedark').load()
 
+vim.notify = require("notify")
+
+
+  local home = os.getenv('HOME')
+  local db = require('dashboard')
+
+
+  db.custom_center = {
+      {icon = '  ',
+      desc = 'Recently latest session                  ',
+      shortcut = 'SPC s l',
+      action ='SessionLoad'},
+      {icon = '  ',
+      desc = 'Recently opened files                   ',
+      action =  'DashboardFindHistory',
+      shortcut = 'SPC f h'},
+      {icon = '  ',
+      desc = 'Find  File                              ',
+      action = 'CocList files',
+      shortcut = 'SPC f f'},
+      {icon = '  ',
+      desc ='File Browser                            ',
+      action =  'Telescope file_browser',
+      shortcut = 'SPC f b'},
+      {icon = '  ',
+      desc = 'Find  word                              ',
+      action = 'Telescope live_grep',
+      shortcut = 'SPC f w'},
+      {icon = '  ',
+      desc = 'Open ~/.config/nvim/init.vim            ',
+      action = ':tabe ~/.config/nvim/init.vim',
+      shortcut = 'SPC f d'},
+    }
 END
+
 
 
