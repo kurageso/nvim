@@ -20,6 +20,8 @@ set expandtab          "タブ入力を空白に変換
 set splitright         "画面を縦分割する際に右に開く
 set clipboard=unnamed  "yank した文字列をクリップボードにコピー
 set hls                "検索した文字をハイライトする
+
+set mouse+=a
 "==============================================================================
 " CHAD
 " \vでCHADを開く
@@ -28,6 +30,12 @@ set hls                "検索した文字をハイライトする
 
 nnoremap <space>e <cmd>CocCommand explorer<CR>
 
+nnoremap <silent> jj <Esc>
+inoremap <silent> jj <Esc>
+
+
+nnoremap <silent>    <C-,> <Cmd>BufferPrevious<CR>
+nnoremap <silent>    <C-.> <Cmd>BufferNext<CR>
 
 "==============================================================================
 " other
@@ -52,12 +60,14 @@ nnoremap <S-d> l
 
 "==============================================================================
 call plug#begin()
-Plug 'ms-jpq/chadtree', {'branch': 'chad', 'do': 'python3 -m chadtree deps'}
+Plug 'ms-jpq/chadtree', {'b anch': 'chad', 'do': 'python3 -m chadtree deps'}
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 Plug 'dense-analysis/ale'  " Rubocopを非同期で実行
 Plug 'tpope/vim-rails'     " Rails
 Plug 'tpope/vim-endwise'   " endを自動でつける
+
+Plug 'vim-test/vim-test'
 
 Plug 'voldikss/vim-floaterm'
 Plug 'nvim-lualine/lualine.nvim'
@@ -66,6 +76,9 @@ Plug 'kyazdani42/nvim-web-devicons'
 Plug 'rcarriga/nvim-notify'
 Plug 'romgrk/barbar.nvim'
 Plug 'glepnir/dashboard-nvim'
+
+Plug 'lukas-reineke/indent-blankline.nvim'
+
 " colorscheme
 Plug 'navarasu/onedark.nvim'
 Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
@@ -95,6 +108,7 @@ tnoremap <silent> <leader>]  <C-\><C-n>:FloatermNext<CR>
 nnoremap <silent> <leader>tt           :FloatermToggle<CR>
 tnoremap <silent> <leader>tt <C-\><C-n>:FloatermToggle<CR>
 tnoremap <silent> <leader>td <C-\><C-n>:FloatermKill!<CR>
+nnoremap <silent> <leader>tg           :FloatermNew lazygit<CR>
 
 augroup vimrc_floaterm
   autocmd!
@@ -102,6 +116,13 @@ augroup vimrc_floaterm
 augroup END
 "==============================================================================
 
+"==============================================================================
+" barbar
+nnoremap <silent>    <silent>, :BufferPrevious<CR>
+nnoremap <silent>    <silent>. :BufferNext<CR>
+
+
+"==============================================================================
 
 "==============================================================================
 " previm
@@ -201,6 +222,4 @@ vim.notify = require("notify")
       shortcut = 'SPC f d'},
     }
 END
-
-
 
