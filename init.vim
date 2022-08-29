@@ -20,7 +20,7 @@ set expandtab          "タブ入力を空白に変換
 set splitright         "画面を縦分割する際に右に開く
 set clipboard=unnamed  "yank した文字列をクリップボードにコピー
 set hls                "検索した文字をハイライトする
-
+set backspace=indent,eol,start
 set mouse+=a
 "==============================================================================
 " CHAD
@@ -29,10 +29,6 @@ set mouse+=a
 "==============================================================================
 
 nnoremap <space>e <cmd>CocCommand explorer<CR>
-
-nnoremap <silent> jj <Esc>
-inoremap <silent> jj <Esc>
-
 
 nnoremap <silent>    <C-,> <Cmd>BufferPrevious<CR>
 nnoremap <silent>    <C-.> <Cmd>BufferNext<CR>
@@ -60,24 +56,25 @@ nnoremap <S-d> l
 
 "==============================================================================
 call plug#begin()
-Plug 'ms-jpq/chadtree', {'b anch': 'chad', 'do': 'python3 -m chadtree deps'}
+
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
-Plug 'dense-analysis/ale'  " Rubocopを非同期で実行
-Plug 'tpope/vim-rails'     " Rails
-Plug 'tpope/vim-endwise'   " endを自動でつける
+Plug 'dense-analysis/ale'    " Rubocopを非同期で実行
+Plug 'tpope/vim-rails'       " Rails
+Plug 'tpope/vim-endwise'     " endを自動でつける
+Plug 'vim-test/vim-test'     " testを実行する
+Plug 'jiangmiao/auto-pairs'  " 自動で閉じ括弧を入力する
+Plug 'voldikss/vim-floaterm' " ターミナルをフロートで表示
 
-Plug 'vim-test/vim-test'
+Plug 'nvim-lualine/lualine.nvim'    " line
+Plug 'kyazdani42/nvim-web-devicons' " icon
+Plug 'rcarriga/nvim-notify'         " 通知
+Plug 'romgrk/barbar.nvim'           " bar
+Plug 'glepnir/dashboard-nvim'       " 起動時にダッシュボードを表示する
 
-Plug 'voldikss/vim-floaterm'
-Plug 'nvim-lualine/lualine.nvim'
-Plug 'kyazdani42/nvim-web-devicons'
+Plug 'tpope/vim-dispatch'
 
-Plug 'rcarriga/nvim-notify'
-Plug 'romgrk/barbar.nvim'
-Plug 'glepnir/dashboard-nvim'
-
-Plug 'lukas-reineke/indent-blankline.nvim'
+Plug 'lukas-reineke/indent-blankline.nvim' " インデントをわかりやすくする
 
 " colorscheme
 Plug 'navarasu/onedark.nvim'
@@ -87,15 +84,29 @@ Plug 'Yazeed1s/minimal.nvim'
 
 Plug 'previm/previm'
 
+
 Plug 'nvim-treesitter/nvim-treesitter'
 Plug 'nvim-treesitter/nvim-treesitter-context'
 
-Plug 'vim-test/vim-test'
+
+" fuzzy finder
+Plug 'junegunn/fzf', {'dir': '~/.fzf','do': './install --all'}
+Plug 'junegunn/fzf.vim' " needed for previews
+Plug 'antoinemadec/coc-fzf', {'branch': 'release'}
 
 call plug#end()
 
 "==============================================================================
 
+
+let g:ale_fixers = {
+      \ 'javascript': ['prettier'],
+      \ 'typescript': ['prettier'],
+      \ 'vue': ['prettier'],
+      \ 'python': ['black'],
+      \ 'ruby': ['rubocop'],
+      \ }
+let g:ale_fix_on_save = 1
 
 "==============================================================================
 " vim-floaterm
@@ -114,6 +125,13 @@ augroup vimrc_floaterm
   autocmd!
   autocmd QuitPre * FloatermKill!
 augroup END
+"==============================================================================
+
+
+"==============================================================================
+" coc-fzf
+nnoremap <silent> ff :CocFzfList files<CR>
+
 "==============================================================================
 
 "==============================================================================
@@ -149,8 +167,9 @@ inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm()
 
 nnoremap <silent> <leader>rf <Plug>(coc-references)
 nnoremap <silent> <leader>h :<C-u>call CocAction('doHover')<CR>
+nnoremap <silent> <leader>f <Cmd>CocList files<CR>
 
-let g:coc_global_extensions = ['coc-lists', 'coc-tsserver', 'coc-prettier', 'coc-eslint', 'coc-vetur', 'coc-explorer', 'coc-solargraph']
+let g:coc_global_extensions = ['coc-lists', 'coc-tsserver', 'coc-prettier', 'coc-eslint', 'coc-vetur', 'coc-pyls', 'coc-explorer', 'coc-solargraph']
 
 "==============================================================================
 
@@ -159,11 +178,24 @@ let g:coc_global_extensions = ['coc-lists', 'coc-tsserver', 'coc-prettier', 'coc
 filetype plugin on
 augroup setAutoCompile
     autocmd!
-    autocmd BufWritePost *.tex :!latexmk %:p
-    autocmd BufWritePost *.py :!black %:p
-    autocmd BufWritePost *.cpp :!g++ -std=c++14 %:p
-    autocmd BufWritePost *.rb :!rubocop -a %:p
+"    autocmd BufWritePost *.tex :!latexmk %:p
+"    autocmd BufWritePost *.py :!black %:p
+"    autocmd BufWritePost *.cpp :!g++ -std=c++14 %:p
+     " autocmd BufWritePost *_spec.rb :TestFile %:p
+"    autocmd BufWritePost *.vue :!yarn prettier --write %:p
 augroup END
+
+
+" テストファイルの保存時にテストを実行する
+augroup test
+  autocmd!
+  autocmd BufWrite * if test#exists() |
+    \   TestFile |
+    \ endif
+augroup END
+
+
+
 "==============================================================================
 
 lua << END
@@ -223,3 +255,5 @@ vim.notify = require("notify")
     }
 END
 
+
+let g:test#strategy = 'dispatch'
