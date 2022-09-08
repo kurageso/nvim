@@ -9,11 +9,6 @@
 "==============================================================================
 
 
-let g:python3_host_prog = expand('/usr/local/bin/python3')
-
-
-set number             "行番号を表示
-set autoindent         "改行時に自動でインデントする
 set tabstop=2          "タブを何文字の空白に変換するか
 set shiftwidth=2       "自動インデント時に入力する空白の数
 set expandtab          "タブ入力を空白に変換
@@ -21,29 +16,18 @@ set splitright         "画面を縦分割する際に右に開く
 set clipboard=unnamed  "yank した文字列をクリップボードにコピー
 set hls                "検索した文字をハイライトする
 set backspace=indent,eol,start
-set mouse+=a
+
+let g:python3_host_prog = expand('/usr/local/bin/python3')
+
 "==============================================================================
 " CHAD
 " \vでCHADを開く
 " nnoremap <leader>v <cmd>CHADopen<cr>
 "==============================================================================
 
-nnoremap <space>e <cmd>CocCommand explorer<CR>
-
-nnoremap <silent>    <C-,> <Cmd>BufferPrevious<CR>
-nnoremap <silent>    <C-.> <Cmd>BufferNext<CR>
 
 "==============================================================================
 " other
-" スペースキー2回で保存する
-noremap <space><space> :<C-U>w<CR>
-
-
-" 入力モードでのカーソル移動
-inoremap <C-j> <Down>
-inoremap <C-k> <Up>
-inoremap <C-h> <Left>
-inoremap <C-l> <Right>
 
 nnoremap <S-w> k
 nnoremap <S-a> h
@@ -81,7 +65,6 @@ Plug 'navarasu/onedark.nvim'
 Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
 Plug 'Yazeed1s/minimal.nvim'
 
-
 Plug 'previm/previm'
 
 
@@ -94,6 +77,10 @@ Plug 'junegunn/fzf', {'dir': '~/.fzf','do': './install --all'}
 Plug 'junegunn/fzf.vim' " needed for previews
 Plug 'antoinemadec/coc-fzf', {'branch': 'release'}
 
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.0' }
+
+
 call plug#end()
 
 "==============================================================================
@@ -104,7 +91,7 @@ let g:ale_fixers = {
       \ 'typescript': ['prettier'],
       \ 'vue': ['prettier'],
       \ 'python': ['black'],
-      \ 'ruby': ['rubocop'],
+      \ 'ruby': ['rufo'],
       \ }
 let g:ale_fix_on_save = 1
 
@@ -127,20 +114,6 @@ augroup vimrc_floaterm
 augroup END
 "==============================================================================
 
-
-"==============================================================================
-" coc-fzf
-nnoremap <silent> ff :CocFzfList files<CR>
-
-"==============================================================================
-
-"==============================================================================
-" barbar
-nnoremap <silent>    <silent>, :BufferPrevious<CR>
-nnoremap <silent>    <silent>. :BufferNext<CR>
-
-
-"==============================================================================
 
 "==============================================================================
 " previm
@@ -198,62 +171,13 @@ augroup END
 
 "==============================================================================
 
+
+let g:test#strategy = 'dispatch'
+
+
 lua << END
-require('lualine').setup()
-
-require'nvim-treesitter.configs'.setup {
-  highlight = {
-    enable = true,
-  },
-  ensure_installed = { "python", "javascript", "typescript", "vue", "ruby" }
-}
-
-require('treesitter-context').setup {
-  enable = true,
-  default = {
-    patterns = { "class", "def", "function" }
-  }
-}
-
-require('onedark').setup {
-    style = 'dark'
-}
-require('onedark').load()
-
-vim.notify = require("notify")
-
-
-  local home = os.getenv('HOME')
-  local db = require('dashboard')
-
-
-  db.custom_center = {
-      {icon = '  ',
-      desc = 'Recently latest session                  ',
-      shortcut = 'SPC s l',
-      action ='SessionLoad'},
-      {icon = '  ',
-      desc = 'Recently opened files                   ',
-      action =  'DashboardFindHistory',
-      shortcut = 'SPC f h'},
-      {icon = '  ',
-      desc = 'Find  File                              ',
-      action = 'CocList files',
-      shortcut = 'SPC f f'},
-      {icon = '  ',
-      desc ='File Browser                            ',
-      action =  'Telescope file_browser',
-      shortcut = 'SPC f b'},
-      {icon = '  ',
-      desc = 'Find  word                              ',
-      action = 'Telescope live_grep',
-      shortcut = 'SPC f w'},
-      {icon = '  ',
-      desc = 'Open ~/.config/nvim/init.vim            ',
-      action = ':tabe ~/.config/nvim/init.vim',
-      shortcut = 'SPC f d'},
-    }
+require("options")
+require("keymaps")
 END
 
 
-let g:test#strategy = 'dispatch'
