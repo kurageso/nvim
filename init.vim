@@ -20,25 +20,6 @@ set backspace=indent,eol,start
 let g:python3_host_prog = expand('/usr/local/bin/python3')
 
 "==============================================================================
-" CHAD
-" \vでCHADを開く
-" nnoremap <leader>v <cmd>CHADopen<cr>
-"==============================================================================
-
-
-"==============================================================================
-" other
-
-nnoremap <S-w> k
-nnoremap <S-a> h
-nnoremap <S-s> j
-nnoremap <S-d> l
-
-"==============================================================================
-
-
-
-"==============================================================================
 call plug#begin()
 
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -80,7 +61,6 @@ Plug 'antoinemadec/coc-fzf', {'branch': 'release'}
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.0' }
 
-
 call plug#end()
 
 "==============================================================================
@@ -91,23 +71,11 @@ let g:ale_fixers = {
       \ 'typescript': ['prettier'],
       \ 'vue': ['prettier'],
       \ 'python': ['black'],
-      \ 'ruby': ['rufo'],
+      \ 'ruby': ['rubocop'],
       \ }
 let g:ale_fix_on_save = 1
 
 "==============================================================================
-" vim-floaterm
-nnoremap <silent> <leader>tn           :FloatermNew<CR>
-tnoremap <silent> <leader>tn <C-\><C-n>:FloatermNew<CR>
-nnoremap <silent> <leader>[            :FloatermPrev<CR>
-tnoremap <silent> <leader>[  <C-\><C-n>:FloatermPrev<CR>
-nnoremap <silent> <leader>]            :FloatermNext<CR>
-tnoremap <silent> <leader>]  <C-\><C-n>:FloatermNext<CR>
-nnoremap <silent> <leader>tt           :FloatermToggle<CR>
-tnoremap <silent> <leader>tt <C-\><C-n>:FloatermToggle<CR>
-tnoremap <silent> <leader>td <C-\><C-n>:FloatermKill!<CR>
-nnoremap <silent> <leader>tg           :FloatermNew lazygit<CR>
-
 augroup vimrc_floaterm
   autocmd!
   autocmd QuitPre * FloatermKill!
@@ -140,9 +108,17 @@ inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm()
 
 nnoremap <silent> <leader>rf <Plug>(coc-references)
 nnoremap <silent> <leader>h :<C-u>call CocAction('doHover')<CR>
-nnoremap <silent> <leader>f <Cmd>CocList files<CR>
 
-let g:coc_global_extensions = ['coc-lists', 'coc-tsserver', 'coc-prettier', 'coc-eslint', 'coc-vetur', 'coc-pyls', 'coc-explorer', 'coc-solargraph']
+let g:coc_global_extensions = [
+      \ 'coc-lists',
+      \ 'coc-tsserver',
+      \ 'coc-prettier',
+      \ 'coc-eslint',
+      \ 'coc-vetur',
+      \ 'coc-pyls',
+      \ 'coc-explorer',
+      \ 'coc-solargraph',
+      \ ]
 
 "==============================================================================
 
