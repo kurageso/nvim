@@ -17,6 +17,8 @@ set clipboard=unnamed  "yank した文字列をクリップボードにコピー
 set hls                "検索した文字をハイライトする
 set backspace=indent,eol,start
 
+
+let g:test#strategy = 'dispatch'
 let g:python3_host_prog = expand('/usr/local/bin/python3')
 
 "==============================================================================
@@ -43,8 +45,6 @@ Plug 'lukas-reineke/indent-blankline.nvim' " インデントをわかりやす�
 
 " colorscheme
 Plug 'navarasu/onedark.nvim'
-Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
-Plug 'Yazeed1s/minimal.nvim'
 
 Plug 'previm/previm'
 
@@ -60,6 +60,11 @@ Plug 'antoinemadec/coc-fzf', {'branch': 'release'}
 
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.0' }
+Plug 'nvim-telescope/telescope-frecency.nvim'
+
+Plug 'airblade/vim-gitgutter'
+
+
 
 call plug#end()
 
@@ -118,6 +123,8 @@ let g:coc_global_extensions = [
       \ 'coc-pyls',
       \ 'coc-explorer',
       \ 'coc-solargraph',
+      \ 'coc-snippets',
+      \ 'coc-spell-checker',
       \ ]
 
 "==============================================================================
@@ -148,12 +155,14 @@ augroup END
 "==============================================================================
 
 
-let g:test#strategy = 'dispatch'
 
 
 lua << END
 require("options")
 require("keymaps")
+
+require('telescope').setup{  defaults = { file_ignore_patterns = { "node_modules", "vendor/ruby" }} }
+
 END
 
 
