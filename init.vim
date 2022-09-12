@@ -17,7 +17,6 @@ set clipboard=unnamed  "yank した文字列をクリップボードにコピー
 set hls                "検索した文字をハイライトする
 set backspace=indent,eol,start
 
-
 let g:test#strategy = 'dispatch'
 let g:python3_host_prog = expand('/usr/local/bin/python3')
 
@@ -40,6 +39,10 @@ Plug 'romgrk/barbar.nvim'           " bar
 Plug 'glepnir/dashboard-nvim'       " 起動時にダッシュボードを表示する
 
 Plug 'tpope/vim-dispatch'
+
+" コメント
+" https://github.com/tpope/vim-commentary
+Plug 'tpope/vim-commentary'
 
 Plug 'lukas-reineke/indent-blankline.nvim' " インデントをわかりやすくする
 
@@ -134,7 +137,6 @@ let g:coc_global_extensions = [
 filetype plugin on
 augroup setAutoCompile
     autocmd!
-"    autocmd BufWritePost *.tex :!latexmk %:p
 "    autocmd BufWritePost *.py :!black %:p
 "    autocmd BufWritePost *.cpp :!g++ -std=c++14 %:p
      " autocmd BufWritePost *_spec.rb :TestFile %:p
