@@ -30,5 +30,10 @@
       "enableNerdfont": true,
       "source": "nvim-web-devicons"
     }
-  }
+  },
+  "cSpell": {
+    "dictionaryDefinitions": [
+      { "name": "nvim", "path": "./dictionary/nvim.txt" },
+    ],
+    "dictionaries": ["nvim"]
 }

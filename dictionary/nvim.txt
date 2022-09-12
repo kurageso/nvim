@@ -1,0 +1,10 @@
+vetur
+pyls
+nvim
+rubocop
+floaterm
+junegunn
+antoinemadec
+tpope
+neoclide
+
