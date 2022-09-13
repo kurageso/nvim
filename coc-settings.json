@@ -36,4 +36,9 @@
       { "name": "nvim", "path": "./dictionary/nvim.txt" },
     ],
     "dictionaries": ["nvim"]
+  },
+  "vetur": {
+    "templateProps": true,
+    "templateInterpolationService": true
+  }
 }
