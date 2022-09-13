@@ -6,11 +6,14 @@ vim.opt.autoindent = true -- 改行時に自動でインデントする
 
 require('lualine').setup()
 
-require'nvim-treesitter.configs'.setup {
+require('nvim-treesitter.configs').setup {
+  ensure_installed = {
+    "ruby", "javascript", "lua", "typescript", "vue", "jsdoc", "html", "yaml", "vim", "vue", "json"
+  },
+  auto_install = true,
   highlight = {
     enable = true,
-  },
-  ensure_installed = { "python", "javascript", "typescript", "vue", "ruby" }
+  }
 }
 
 require('treesitter-context').setup {
