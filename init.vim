@@ -20,15 +20,40 @@ set backspace=indent,eol,start
 let g:test#strategy = 'dispatch'
 let g:python3_host_prog = expand('/usr/local/bin/python3')
 
+
+let g:blamer_enabled = 1
+
 "==============================================================================
 call plug#begin()
 
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
+Plug 'liuchengxu/vista.vim'
+
+Plug 'petertriho/nvim-scrollbar'
+
+Plug 'stevearc/overseer.nvim'
+
+Plug 'sidebar-nvim/sidebar.nvim'
+
+Plug 'kevinhwang91/nvim-hlslens'
+
+" gitでの変更履歴を表示
+Plug 'APZelos/blamer.nvim'
+
 Plug 'dense-analysis/ale'    " Rubocopを非同期で実行
 Plug 'tpope/vim-rails'       " Rails
 Plug 'tpope/vim-endwise'     " endを自動でつける
+
+" test
 Plug 'vim-test/vim-test'     " testを実行する
+
+Plug 'antoinemadec/FixCursorHold.nvim'
+Plug 'nvim-neotest/neotest'
+Plug 'olimorris/neotest-rspec' 
+Plug 'vim-neotest/neotest-plenary'
+
+
 Plug 'jiangmiao/auto-pairs'  " 自動で閉じ括弧を入力する
 Plug 'voldikss/vim-floaterm' " ターミナルをフロートで表示
 
@@ -43,6 +68,15 @@ Plug 'tpope/vim-dispatch'
 " コメント
 " https://github.com/tpope/vim-commentary
 Plug 'tpope/vim-commentary'
+" contextに応じたコメント
+Plug 'JoosepAlviste/nvim-ts-context-commentstring'
+
+
+" 引数の変数の色を変える
+Plug 'm-demare/hlargs.nvim'
+
+" 閉じ括弧の対応先を表示
+Plug 'haringsrob/nvim_context_vt'
 
 Plug 'lukas-reineke/indent-blankline.nvim' " インデントをわかりやすくする
 
@@ -51,6 +85,7 @@ Plug 'navarasu/onedark.nvim'
 
 Plug 'previm/previm'
 
+Plug 'norcalli/nvim-colorizer.lua'
 
 Plug 'nvim-treesitter/nvim-treesitter'
 Plug 'nvim-treesitter/nvim-treesitter-context'
@@ -62,12 +97,15 @@ Plug 'junegunn/fzf.vim' " needed for previews
 Plug 'antoinemadec/coc-fzf', {'branch': 'release'}
 
 Plug 'nvim-lua/plenary.nvim'
+Plug 'folke/todo-comments.nvim'
+
 Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.0' }
 Plug 'nvim-telescope/telescope-frecency.nvim'
 
 Plug 'airblade/vim-gitgutter'
 
-
+" debugger
+Plug 'puremourning/vimspector'
 
 call plug#end()
 
@@ -139,19 +177,19 @@ augroup setAutoCompile
     autocmd!
 "    autocmd BufWritePost *.py :!black %:p
 "    autocmd BufWritePost *.cpp :!g++ -std=c++14 %:p
-     " autocmd BufWritePost *_spec.rb :TestFile %:p
+     autocmd BufWritePost *_spec.rb :lua require('neotest').run.run(vim.fn.expand('%'))
 "    autocmd BufWritePost *.vue :!yarn prettier --write %:p
+    autocmd BufWritePost *_spec.rb :lua require('neotest').summary.open()
 augroup END
 
 
 " テストファイルの保存時にテストを実行する
-augroup test
-  autocmd!
-  autocmd BufWrite * if test#exists() |
-    \   TestFile |
-    \ endif
-augroup END
-
+" augroup test
+  " autocmd!
+  " autocmd BufWrite * if test#exists() |
+    " \   TestFile |
+    " \ endif
+" augroup END
 
 
 "==============================================================================
@@ -162,9 +200,40 @@ augroup END
 lua << END
 require("options")
 require("keymaps")
+require("config/neotest")
 
 require('telescope').setup{  defaults = { file_ignore_patterns = { "node_modules", "vendor/ruby" }} }
 
+require('hlargs').setup()
+
+require("todo-comments").setup()
+
+require("scrollbar").setup()
+
+require('colorizer').setup {
+  '*';
+}
+
+require("hlslens").setup({
+   build_position_cb = function(plist, _, _, _)
+        require("scrollbar.handlers.search").handler.show(plist.start_pos)
+   end,
+})
+
+vim.cmd([[
+    augroup scrollbar_search_hide
+        autocmd!
+        autocmd CmdlineLeave : lua require('scrollbar.handlers.search').handler.hide()
+    augroup END
+]])
+
+require("sidebar-nvim").setup {
+  open = true,
+  sections = { 'datetime', 'git', 'todos', 'files' }
+}
+
+require("overseer").setup()
+
 END
 
-
+let g:vista_icon_indent = ["╰─▸ ", "├─▸ "]

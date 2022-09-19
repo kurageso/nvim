@@ -20,6 +20,9 @@ require('treesitter-context').setup {
   enable = true,
   default = {
     patterns = { "class", "def", "function" }
+  },
+  context_commentstring = {
+    enable = true
   }
 }
 
@@ -55,5 +58,9 @@ require('dashboard').custom_center = {
       desc = 'Open ~/.config/nvim/init.vim            ',
       action = ':tabe ~/.config/nvim/init.vim',
       shortcut = 'SPC f d'},
-    }
+      {icon = '  ',
+      desc = 'Open ~/.config/nvim/lua/keymaps.lua     ',
+      action = ':tabe ~/.config/nvim/lua/keymaps.lua',
+      shortcut = 'SPC f k'},
+  }
 
