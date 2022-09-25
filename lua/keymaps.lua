@@ -50,3 +50,11 @@ keymap("n", "<C-a>", ":lua require('neotest').summary.toggle()<CR>", opts)
 keymap("n", "<S-o>", ":lua require('neotest').output.open()<CR>", opts)
 
 keymap("n", "<C-s>", ":Vista coc", opts)
+
+
+-- 矢印キーを無効にする
+keymap("n", "<Up>",    "<Nop>", opts)
+keymap("n", "<Down>",  "<Nop>", opts)
+keymap("n", "<Left>",  "<Nop>", opts)
+keymap("n", "<Right>", "<nop>", opts)
+ 

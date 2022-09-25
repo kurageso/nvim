@@ -50,7 +50,8 @@ Plug 'vim-test/vim-test'     " testを実行する
 
 Plug 'antoinemadec/FixCursorHold.nvim'
 Plug 'nvim-neotest/neotest'
-Plug 'olimorris/neotest-rspec' 
+Plug 'olimorris/neotest-rspec'
+Plug 'haydenmeade/neotest-jest'
 Plug 'vim-neotest/neotest-plenary'
 
 
@@ -104,8 +105,13 @@ Plug 'nvim-telescope/telescope-frecency.nvim'
 
 Plug 'airblade/vim-gitgutter'
 
-" debugger
-Plug 'puremourning/vimspector'
+
+Plug 'tpope/vim-surround'
+
+Plug 'mfussenegger/nvim-dap'
+Plug 'suketa/nvim-dap-ruby'
+Plug 'theHamsta/nvim-dap-virtual-text'
+Plug 'rcarriga/nvim-dap-ui'
 
 call plug#end()
 
@@ -178,8 +184,12 @@ augroup setAutoCompile
 "    autocmd BufWritePost *.py :!black %:p
 "    autocmd BufWritePost *.cpp :!g++ -std=c++14 %:p
      autocmd BufWritePost *_spec.rb :lua require('neotest').run.run(vim.fn.expand('%'))
-"    autocmd BufWritePost *.vue :!yarn prettier --write %:p
-    autocmd BufWritePost *_spec.rb :lua require('neotest').summary.open()
+     autocmd BufWritePost *.spec.ts :lua require('neotest').run.run(vim.fn.expand('%'))
+     "    autocmd BufWritePost *.vue :!yarn prettier --write %:p
+     autocmd BufWritePost *_spec.rb :lua require('neotest').summary.open()
+
+     autocmd BufWritePost *.spec.ts :lua require('neotest').summary.open()
+     "    autocmd BufWritePost *.vue :!yarn prettier --write %:p
 augroup END
 
 
@@ -234,6 +244,42 @@ require("sidebar-nvim").setup {
 
 require("overseer").setup()
 
+require("nvim-dap-virtual-text").setup()
+require("dapui").setup()
+
+-- require('dap-ruby').setup()
+
+local dap = require('dap')
+
+dap.adapters.ruby = {
+    type = "executable",
+    command = "bundle",
+    args = { "exec", "readapt", "stdio" },
+}
+
+dap.configurations.ruby = {
+  {
+    type = 'ruby';
+    request = 'launch';
+    name = 'Rails';
+    program = 'bundle';
+    programArgs = {'exec', 'rails', 's'};
+    useBundler = true;
+  },
+}
+
 END
 
+
+
+
+
+
+
 let g:vista_icon_indent = ["╰─▸ ", "├─▸ "]
+
+
+set nocompatible
+filetype plugin on
+runtime macros/matchit.vim
+
