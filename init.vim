@@ -8,6 +8,7 @@
 
 "==============================================================================
 
+autocmd BufWritePost  ~/.config/nvim/init.vim  source ~/.config/nvim/init.vim
 
 set tabstop=2          "タブを何文字の空白に変換するか
 set shiftwidth=2       "自動インデント時に入力する空白の数
@@ -16,6 +17,13 @@ set splitright         "画面を縦分割する際に右に開く
 set clipboard=unnamed  "yank した文字列をクリップボードにコピー
 set hls                "検索した文字をハイライトする
 set backspace=indent,eol,start
+set cmdheight=2   
+set whichwrap=b,s,h,l,<,>,[,],~
+set cursorline
+set helplang=ja
+
+set encoding=utf-8
+scriptencoding utf-8
 
 let g:test#strategy = 'dispatch'
 let g:python3_host_prog = expand('/usr/local/bin/python3')
@@ -38,12 +46,14 @@ Plug 'sidebar-nvim/sidebar.nvim'
 
 Plug 'kevinhwang91/nvim-hlslens'
 
+Plug 'unblevable/quick-scope'
+
 " gitでの変更履歴を表示
 Plug 'APZelos/blamer.nvim'
 
 Plug 'dense-analysis/ale'    " Rubocopを非同期で実行
 Plug 'tpope/vim-rails'       " Rails
-Plug 'tpope/vim-endwise'     " endを自動でつける
+" Plug 'tpope/vim-endwise'     " endを自動でつける
 
 " test
 Plug 'vim-test/vim-test'     " testを実行する
@@ -52,11 +62,17 @@ Plug 'antoinemadec/FixCursorHold.nvim'
 Plug 'nvim-neotest/neotest'
 Plug 'olimorris/neotest-rspec'
 Plug 'haydenmeade/neotest-jest'
-Plug 'vim-neotest/neotest-plenary'
+Plug 'nvim-neotest/neotest-plenary'
 
 
-Plug 'jiangmiao/auto-pairs'  " 自動で閉じ括弧を入力する
 Plug 'voldikss/vim-floaterm' " ターミナルをフロートで表示
+
+" 閉じ括弧などの自動入力
+" Plug 'jiangmiao/auto-pairs'  " endwiseとの相性が悪かった
+Plug 'windwp/nvim-autopairs'
+Plug 'windwp/nvim-ts-autotag'
+
+Plug 'andymass/vim-matchup'     " %での移動を強化する
 
 Plug 'nvim-lualine/lualine.nvim'    " line
 Plug 'kyazdani42/nvim-web-devicons' " icon
@@ -112,6 +128,8 @@ Plug 'mfussenegger/nvim-dap'
 Plug 'suketa/nvim-dap-ruby'
 Plug 'theHamsta/nvim-dap-virtual-text'
 Plug 'rcarriga/nvim-dap-ui'
+
+Plug 'unblevable/quick-scope' 
 
 call plug#end()
 
@@ -193,24 +211,16 @@ augroup setAutoCompile
 augroup END
 
 
-" テストファイルの保存時にテストを実行する
-" augroup test
-  " autocmd!
-  " autocmd BufWrite * if test#exists() |
-    " \   TestFile |
-    " \ endif
-" augroup END
-
-
 "==============================================================================
-
-
 
 
 lua << END
 require("options")
 require("keymaps")
 require("config/neotest")
+require("config/nvim-autopairs")
+require("config/nvim-treesitter")
+require("config/dap")
 
 require('telescope').setup{  defaults = { file_ignore_patterns = { "node_modules", "vendor/ruby" }} }
 
@@ -220,9 +230,7 @@ require("todo-comments").setup()
 
 require("scrollbar").setup()
 
-require('colorizer').setup {
-  '*';
-}
+require('colorizer').setup { '*' }
 
 require("hlslens").setup({
    build_position_cb = function(plist, _, _, _)
@@ -238,43 +246,13 @@ vim.cmd([[
 ]])
 
 require("sidebar-nvim").setup {
-  open = true,
-  sections = { 'datetime', 'git', 'todos', 'files' }
+  open = false,
+  sections = { 'datetime', 'git' }
 }
 
 require("overseer").setup()
 
-require("nvim-dap-virtual-text").setup()
-require("dapui").setup()
-
--- require('dap-ruby').setup()
-
-local dap = require('dap')
-
-dap.adapters.ruby = {
-    type = "executable",
-    command = "bundle",
-    args = { "exec", "readapt", "stdio" },
-}
-
-dap.configurations.ruby = {
-  {
-    type = 'ruby';
-    request = 'launch';
-    name = 'Rails';
-    program = 'bundle';
-    programArgs = {'exec', 'rails', 's'};
-    useBundler = true;
-  },
-}
-
 END
-
-
-
-
-
-
 
 let g:vista_icon_indent = ["╰─▸ ", "├─▸ "]
 

@@ -38,7 +38,21 @@
     "dictionaries": ["nvim"]
   },
   "vetur": {
-    "templateProps": true,
-    "templateInterpolationService": true
+    "useWorkspaceDependencies": true,
+    "dev": {
+      "vlsPath": "~/.config/yarn/global/node_modules/vls"
+    },
+    "validation": {
+      "templateProps": true,
+    },
+    "experimental": {
+      "templateInterpolationService": true
+    },
+    "grammar": {
+      "customBlocks": {
+        "docs": "md",
+        "i18n": "json"
+      }
+    }
   }
 }
