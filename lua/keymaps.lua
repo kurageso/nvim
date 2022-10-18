@@ -9,7 +9,9 @@ keymap("i", "jj", "<ESC>", opts)
 
 keymap("n", "<S-w>", "<C-w><C-w>", opts)
 
-keymap("n", "<space>e", ":NvimTreeToggle<CR>", opts)
+keymap("n", "<space>e", ":NvimTreeToggle<CR>",   opts)
+keymap("n", "<space>f", ":NvimTreeFindFile<CR>", opts)
+
 -- keymap("n", "<M-b>",    ":CocCommand explorer<CR>", opts)
 
 -- barbar
@@ -28,10 +30,12 @@ keymap("n", "<space><space>", ":<C-U>w<CR>", opts)
 -- telescope
 keymap("n", "<leader>f", ":Telescope find_files<CR>",  opts)
 keymap("n", "<leader>g", ":Telescope live_grep<CR>",   opts)
+keymap("n", "<leader>b", ":Telescope buffers<CR>",     opts)
+keymap("n", "<leader>k", ":Telescope keymaps<CR>",     opts)
+keymap("n", "<leader>j", ":Telescope jumplist<CR>",    opts)
 
-
-keymap("n", "<leader>vf", ":Vista finder coc<CR>",   opts)
-
+-- vista
+keymap("n", "<leader>vf", ":Vista finder nvim_lsp<CR>",   opts)
 
 -- vim-floaterm
 keymap("n", "<leader>tn",            ":FloatermNew<CR>",    opts)
