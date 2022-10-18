@@ -12,7 +12,10 @@ keymap("n", "<S-w>", "<C-w><C-w>", opts)
 keymap("n", "<space>e", ":NvimTreeToggle<CR>",   opts)
 keymap("n", "<space>f", ":NvimTreeFindFile<CR>", opts)
 
--- keymap("n", "<M-b>",    ":CocCommand explorer<CR>", opts)
+keymap("n", "<leader>oo", ":OtherClear<CR>:Other<CR>",       opts)
+keymap("n", "<leader>os", ":OtherClear<CR>:OtherSplit<CR>",  opts)
+keymap("n", "<leader>ov", ":OtherClear<CR>:OtherVSplit<CR>", opts)
+
 
 -- barbar
 keymap("n", "<leader>[", ":BufferPrevious<CR>", opts)

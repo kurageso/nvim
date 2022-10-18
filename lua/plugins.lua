@@ -2,6 +2,8 @@ local Plug = vim.fn['plug#']
 
 vim.call('plug#begin')
 
+Plug 'rgroli/other.nvim'
+
 Plug 'nvim-tree/nvim-tree.lua'
 
 Plug 'neovim/nvim-lspconfig'
@@ -10,6 +12,8 @@ Plug 'williamboman/mason-lspconfig.nvim'
 Plug('glepnir/lspsaga.nvim', { branch = 'main' })
 Plug 'j-hui/fidget.nvim'
 
+Plug "SmiteshP/nvim-navic"
+
 Plug 'hrsh7th/cmp-nvim-lsp'
 Plug 'hrsh7th/cmp-buffer'
 Plug 'hrsh7th/cmp-path'
@@ -17,6 +21,7 @@ Plug 'hrsh7th/cmp-cmdline'
 Plug 'hrsh7th/nvim-cmp'
 Plug 'onsails/lspkind.nvim'
 
+-- Plug 'tpope/vim-projectionist'
 
 Plug 'tpope/vim-dispatch'
 
@@ -38,7 +43,7 @@ Plug 'unblevable/quick-scope'
 Plug 'APZelos/blamer.nvim'
 
 Plug 'dense-analysis/ale'    -- Rubocopを非同期で実行
-Plug 'tpope/vim-rails'       -- Rails
+-- Plug 'tpope/vim-rails'       -- Rails
 -- Plug 'tpope/vim-endwise'  -- endを自動でつける
 
 -- test
@@ -133,7 +138,7 @@ Plug 'unblevable/quick-scope'
 Plug 'APZelos/blamer.nvim'
 
 Plug 'dense-analysis/ale'    -- Rubocopを非同期で実行
-Plug 'tpope/vim-rails'       -- Rails
+-- Plug 'tpope/vim-rails'       -- Rails
 -- Plug 'tpope/vim-endwise'   -- endを自動でつける
 
 -- test
