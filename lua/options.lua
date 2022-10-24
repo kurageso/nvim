@@ -61,6 +61,10 @@ vim.g.loaded_netrwPlugin = 1
 -- empty setup using defaults
 require("nvim-tree").setup()
 
+require("auto-session").setup {
+  log_level = "error",
+  auto_session_suppress_dirs = { "~/", "~/Project", "/"},
+}
 
 vim.cmd([[
   let g:ale_fixers = {

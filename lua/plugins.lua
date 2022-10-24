@@ -6,6 +6,8 @@ Plug 'rgroli/other.nvim'
 
 Plug 'nvim-tree/nvim-tree.lua'
 
+Plug 'rmagatti/auto-session'
+
 Plug 'neovim/nvim-lspconfig'
 Plug 'williamboman/mason.nvim'
 Plug 'williamboman/mason-lspconfig.nvim'
