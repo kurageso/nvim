@@ -77,3 +77,7 @@ vim.cmd([[
   let g:ale_fix_on_save = 1
 ]])
 
+
+vim.g.doge_filetype_aliases = {
+  javascript =  { 'vue' }
+}

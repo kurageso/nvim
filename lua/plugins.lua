@@ -4,6 +4,8 @@ vim.call('plug#begin')
 
 Plug 'rgroli/other.nvim'
 
+Plug 'kkoomen/vim-doge'
+
 Plug 'nvim-tree/nvim-tree.lua'
 
 Plug 'rmagatti/auto-session'
