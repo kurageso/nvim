@@ -5,6 +5,7 @@ vim.call('plug#begin')
 Plug 'rgroli/other.nvim'
 
 Plug 'kkoomen/vim-doge'
+-- :call doge#install()
 
 Plug 'nvim-tree/nvim-tree.lua'
 

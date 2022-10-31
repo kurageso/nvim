@@ -16,6 +16,7 @@ keymap("n", "<leader>oo", ":OtherClear<CR>:Other<CR>",       opts)
 keymap("n", "<leader>os", ":OtherClear<CR>:OtherSplit<CR>",  opts)
 keymap("n", "<leader>ov", ":OtherClear<CR>:OtherVSplit<CR>", opts)
 
+keymap("n", "<space>d", ":DogeGenerate<CR>", opts)
 
 -- barbar
 keymap("n", "<leader>[", ":BufferPrevious<CR>", opts)
