@@ -4,6 +4,11 @@ vim.call('plug#begin')
 
 Plug 'rgroli/other.nvim'
 
+Plug 'nvim-zh/colorful-winsep.nvim'
+
+Plug 'folke/noice.nvim'
+Plug 'MunifTanjim/nui.nvim'
+
 Plug 'kkoomen/vim-doge'
 -- :call doge#install()
 
