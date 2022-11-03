@@ -3,6 +3,8 @@ vim.opt.mouse = "a"   -- マウスで操作可能にする
 vim.opt.number = true -- 行番号を表示
 vim.opt.autoindent = true -- 改行時に自動でインデントする
 
+vim.opt.laststatus = 3
+
 vim.opt.tabstop = 2          -- タブを何文字の空白に変換するか
 vim.opt.shiftwidth = 2       -- 自動インデント時に入力する空白の数
 vim.opt.expandtab = true          -- タブ入力を空白に変換
@@ -25,7 +27,15 @@ require("hlslens").setup({
    end,
 })
 
-require('lualine').setup()
+require('lualine').setup({
+  options = {
+    globalstatus = true,
+  }
+})
+
+-- require('colorful-winsep').setup({})
+
+require("noice").setup()
 
 require('telescope').setup{  defaults = { file_ignore_patterns = { "node_modules", "vendor/ruby" }} }
 
