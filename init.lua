@@ -1,3 +1,15 @@
+-- vetur
+vim.cmd([[
+augroup i18n
+  autocmd!
+  autocmd BufReadPost *.vue  s;\(<i18n.*\)/>;\1></i18n>;eg
+  autocmd FileReadPost *.vue s;\(<i18n.*\)/>;\1></i18n>;eg
+
+  autocmd BufEnter *.vue  s;\(<i18n.*\)/>;\1></i18n>;eg | w
+  autocmd BufLeave *.vue s;></i18n>;/>;eg | w
+augroup END
+]])
+
 vim.cmd([[
 augroup vimrc_floaterm
   autocmd!
