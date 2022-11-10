@@ -20,7 +20,7 @@ augroup END
 vim.cmd([[
 augroup Ruby
   autocmd!
-  autocmd BufMewFile, BufRead *.json.jbuilder set ft=ruby
+  autocmd BufNewFile, BufRead *.json.jbuilder set ft=ruby
 augroup END
 ]])
 
