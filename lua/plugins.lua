@@ -6,6 +6,9 @@ Plug 'rgroli/other.nvim'
 
 Plug 'nvim-zh/colorful-winsep.nvim'
 
+-- 余分な空白に色をつける
+Plug 'ntpeters/vim-better-whitespace'
+
 Plug 'folke/noice.nvim'
 Plug 'MunifTanjim/nui.nvim'
 
