@@ -34,8 +34,16 @@ require('lualine').setup({
 })
 
 -- require('colorful-winsep').setup({})
+-- <C-w><C-w>で最初のbufに戻れなくなるのでコメントアウト
 
-require("noice").setup()
+require("noice").setup({
+  cmdline = {
+    format = {
+      search_down = { kind = "search", pattern = "^/", icon = " ", lang = "regex" },
+      search_up = { kind = "search", pattern = "^%?", icon = " ", lang = "regex" },
+    }
+  }
+})
 
 require('telescope').setup{  defaults = { file_ignore_patterns = { "node_modules", "vendor/ruby" }} }
 
