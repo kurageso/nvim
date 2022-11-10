@@ -96,6 +96,7 @@ vim.cmd([[
 ]])
 
 
-vim.g.doge_filetype_aliases = {
-  javascript =  { 'vue' }
-}
+-- lspもjsとして認識してしまうのでコメントアウト
+-- vim.g.doge_filetype_aliases = {
+--   javascript =  { 'vue' }
+-- }
