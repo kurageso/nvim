@@ -12,6 +12,8 @@ keymap("n", "<S-w>", "<C-w><C-w>", opts)
 keymap("n", "<space>e", ":NvimTreeToggle<CR>",   opts)
 keymap("n", "<space>f", ":NvimTreeFindFile<CR>", opts)
 
+keymap("n", "<space>t", ":TroubleToggle<CR>",    opts)
+
 keymap("n", "<leader>oo", ":OtherClear<CR>:Other<CR>",       opts)
 keymap("n", "<leader>os", ":OtherClear<CR>:OtherSplit<CR>",  opts)
 keymap("n", "<leader>ov", ":OtherClear<CR>:OtherVSplit<CR>", opts)
@@ -65,20 +67,6 @@ keymap("n", "<Up>",    "<Nop>", opts)
 keymap("n", "<Down>",  "<Nop>", opts)
 keymap("n", "<Left>",  "<Nop>", opts)
 keymap("n", "<Right>", "<nop>", opts)
-
-
--- keymap("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", opts)
--- keymap("n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>", opts)
--- keymap("n", "<C-m>", "<cmd>lua vim.lsp.buf.signature_help()<CR>", opts)
--- keymap("n", "gy", "<cmd>lua vim.lsp.buf.type_definition()<CR>", opts)
--- keymap("n", "rn", "<cmd>lua vim.lsp.buf.rename()<CR>", opts)
--- keymap("n", "ma", "<cmd>lua vim.lsp.buf.code_action()<CR>", opts)
--- keymap("n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", opts)
--- keymap("n", "<space>e", "<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>", opts)
--- keymap("n", "[d", "<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>", opts)
--- keymap("n", "]d", "<cmd>lua vim.lsp.diagnostic.goto_next()<CR>", opts)
-
-
 
 -- Lsp finder find the symbol definition implement reference
 -- if there is no implement it will hide
