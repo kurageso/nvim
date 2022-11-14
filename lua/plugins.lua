@@ -15,6 +15,8 @@ Plug 'MunifTanjim/nui.nvim'
 Plug 'kkoomen/vim-doge'
 -- :call doge#install()
 
+Plug 'folke/trouble.nvim'
+
 Plug 'nvim-tree/nvim-tree.lua'
 
 Plug 'rmagatti/auto-session'

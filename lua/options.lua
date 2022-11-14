@@ -33,9 +33,10 @@ require('lualine').setup({
   }
 })
 
+require('trouble').setup()
+
 -- require('colorful-winsep').setup({})
 -- <C-w><C-w>で最初のbufに戻れなくなるのでコメントアウト
-
 require("noice").setup({
   cmdline = {
     format = {
