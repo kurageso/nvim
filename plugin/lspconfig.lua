@@ -6,21 +6,31 @@ local navic = require("nvim-navic")
 require'lspconfig'.gopls.setup{}
 
 require("lspconfig").solargraph.setup{
-    on_attach = function(client, bufnr)
-        navic.attach(client, bufnr)
-    end
+  on_attach = function(client, bufnr)
+    navic.attach(client, bufnr)
+  end
 }
 require("lspconfig").vuels.setup{
-    on_attach = function(client, bufnr)
-        navic.attach(client, bufnr)
-    end
+  on_attach = function(client, bufnr)
+    navic.attach(client, bufnr)
+  end
 }
-require("lspconfig").bashls.setup{}
-require("lspconfig").sumneko_lua.setup{}
+require("lspconfig").bashls.setup{
+  on_attach = function(client, bufnr)
+    navic.attach(client, bufnr)
+  end
+}
+
+require("lspconfig").sumneko_lua.setup{
+  on_attach = function(client, bufnr)
+    navic.attach(client, bufnr)
+  end
+}
+
 require("lspconfig").tsserver.setup{
-    on_attach = function(client, bufnr)
-        navic.attach(client, bufnr)
-    end
+  on_attach = function(client, bufnr)
+    navic.attach(client, bufnr)
+  end
 }
 
 local capabilities = require('cmp_nvim_lsp').update_capabilities(
@@ -38,5 +48,4 @@ require("mason-lspconfig").setup_handlers {
 local saga = require('lspsaga')
 
 saga.init_lsp_saga()
-
 
