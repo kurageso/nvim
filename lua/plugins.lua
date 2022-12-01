@@ -69,7 +69,7 @@ Plug 'nvim-neotest/neotest'
 Plug 'olimorris/neotest-rspec'
 Plug 'haydenmeade/neotest-jest'
 Plug 'nvim-neotest/neotest-plenary'
-
+Plug 'nvim-neotest/neotest-go'
 
 Plug 'voldikss/vim-floaterm' -- ターミナルをフロートで表示
 

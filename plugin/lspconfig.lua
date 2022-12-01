@@ -3,6 +3,8 @@ require("mason-lspconfig").setup()
 
 local navic = require("nvim-navic")
 
+require'lspconfig'.gopls.setup{}
+
 require("lspconfig").solargraph.setup{
     on_attach = function(client, bufnr)
         navic.attach(client, bufnr)

@@ -18,6 +18,8 @@
           })
         end
       }),
+
+      require('neotest-go')
     },
     -- overseer.nvim
     consumers = {

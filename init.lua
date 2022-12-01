@@ -30,10 +30,12 @@ vim.cmd([[
   augroup setAutoCompile
     autocmd!
      autocmd BufWritePost *_spec.rb :lua require('neotest').run.run(vim.fn.expand('%'))
-     autocmd BufWritePost *.spec.ts :lua require('neotest').run.run(vim.fn.expand('%'))
+     autocmd BufWritePost *.spec.ts,*.test.ts,*jest.ts :lua require('neotest').run.run(vim.fn.expand('%'))
+     autocmd BufWritePost *_test.go :lua require('neotest').run.run(vim.fn.expand('%'))
 
      autocmd BufWritePost *_spec.rb :lua require('neotest').summary.open()
      autocmd BufWritePost *.spec.ts :lua require('neotest').summary.open()
+     autocmd BufWritePost *_test.go :lua require('neotest').summary.open()
   augroup END
 ]])
 

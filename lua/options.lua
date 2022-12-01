@@ -92,6 +92,7 @@ vim.cmd([[
       \ 'vue': ['prettier'],
       \ 'python': ['black'],
       \ 'ruby': ['rubocop'],
+      \ 'go': ['gofmt'],
       \ }
   let g:ale_fix_on_save = 1
 ]])
