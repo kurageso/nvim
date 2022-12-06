@@ -10,6 +10,14 @@ augroup i18n
 augroup END
 ]])
 
+
+vim.cmd([[
+augrop format
+  autocmd!
+  autocmd BufWritePre *.js,*.ts,*.vue Neoformat
+augroup END
+]])
+
 vim.cmd([[
 augroup vimrc_floaterm
   autocmd!

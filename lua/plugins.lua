@@ -4,6 +4,8 @@ vim.call('plug#begin')
 
 Plug 'rgroli/other.nvim'
 
+Plug 'sbdchd/neoformat'
+
 Plug 'nvim-zh/colorful-winsep.nvim'
 
 -- 余分な空白に色をつける

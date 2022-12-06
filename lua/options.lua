@@ -21,6 +21,10 @@ vim.g.blamer_enabled = 1
 vim.g.previm_open_cmd = "open -a Google Chrome"
 vim.g.vista_icon_indent = {"╰─▸ ", "├─▸ "}
 
+
+vim.g.neoformat_try_node_exe = 1
+
+
 require("hlslens").setup({
    build_position_cb = function(plist, _, _, _)
         require("scrollbar.handlers.search").handler.show(plist.start_pos)
