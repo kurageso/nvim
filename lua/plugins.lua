@@ -84,7 +84,7 @@ Plug 'andymass/vim-matchup'     -- %での移動を強化する
 
 Plug 'nvim-lualine/lualine.nvim'    -- line
 Plug 'kyazdani42/nvim-web-devicons' -- icon
-Plug 'rcarriga/nvim-notify'         -- 通知
+-- Plug 'rcarriga/nvim-notify'         -- 通知
 Plug 'romgrk/barbar.nvim'           -- bar
 Plug 'glepnir/dashboard-nvim'       -- 起動時にダッシュボードを表示する
 
