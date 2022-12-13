@@ -10,7 +10,6 @@ augroup i18n
 augroup END
 ]])
 
-
 vim.cmd([[
 augroup format
   autocmd!
@@ -31,7 +30,6 @@ augroup Ruby
   autocmd BufNewFile, BufRead *.json.jbuilder set ft=ruby
 augroup END
 ]])
-
 
 vim.cmd([[
   filetype plugin on
@@ -57,7 +55,6 @@ vim.cmd([[
         autocmd CmdlineLeave : lua require('scrollbar.handlers.search').handler.hide()
     augroup END
 ]])
-
 
 vim.cmd([[
   set nocompatible
