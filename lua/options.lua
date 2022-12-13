@@ -1,5 +1,4 @@
 -- vim.opt
-vim.opt.mouse = "a"   -- マウスで操作可能にする
 vim.opt.number = true -- 行番号を表示
 vim.opt.autoindent = true -- 改行時に自動でインデントする
 
