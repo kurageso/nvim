@@ -12,7 +12,7 @@ augroup END
 
 
 vim.cmd([[
-augrop format
+augroup format
   autocmd!
   autocmd BufWritePre *.js,*.ts,*.vue Neoformat
 augroup END
