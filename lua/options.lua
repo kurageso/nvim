@@ -75,8 +75,6 @@ require("sidebar-nvim").setup {
 
 require("overseer").setup()
 
-vim.notify = require("notify")
-
 require"fidget".setup{}
 
 
