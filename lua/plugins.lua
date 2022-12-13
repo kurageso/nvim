@@ -125,7 +125,8 @@ Plug 'folke/todo-comments.nvim'
 Plug('nvim-telescope/telescope.nvim', { tag = '0.1.0' })
 Plug 'nvim-telescope/telescope-frecency.nvim'
 
-Plug 'airblade/vim-gitgutter'
+-- Plug 'airblade/vim-gitgutter'
+Plug 'lewis6991/gitsigns.nvim'
 
 
 Plug 'tpope/vim-surround'
@@ -219,9 +220,6 @@ Plug 'folke/todo-comments.nvim'
 
 Plug('nvim-telescope/telescope.nvim', { tag = '0.1.0' })
 Plug 'nvim-telescope/telescope-frecency.nvim'
-
-Plug 'airblade/vim-gitgutter'
-
 
 Plug 'tpope/vim-surround'
 
