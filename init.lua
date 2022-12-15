@@ -10,12 +10,12 @@ augroup i18n
 augroup END
 ]])
 
-vim.cmd([[
-augroup format
-  autocmd!
-  autocmd BufWritePre *.js,*.ts,*.vue Neoformat
-augroup END
-]])
+vim.api.nvim_create_augroup("format", {})
+vim.api.nvim_create_autocmd({"BufWritePost"}, {
+  group = "format",
+  pattern = {"*.js", "*.ts", ".vue" },
+  command = "Neoformat",
+})
 
 vim.cmd([[
 augroup vimrc_floaterm
