@@ -2,6 +2,9 @@ local Plug = vim.fn['plug#']
 
 vim.call('plug#begin')
 
+Plug 'kurageso/search-word.nvim'
+Plug 'kurageso/vetur-self-closing.nvim'
+
 Plug 'rgroli/other.nvim'
 
 Plug 'sbdchd/neoformat'
