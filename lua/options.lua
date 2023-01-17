@@ -66,6 +66,13 @@ require("todo-comments").setup()
 
 require("scrollbar").setup()
 
+
+vim.cmd([[
+  autocmd ColorScheme * hi Normal guibg=#000000
+  autocmd ColorScheme * hi EndOfBuffer guibg=#000000
+  autocmd ColorScheme * hi FloatermBorder guibg=#000000 guifg=cyan
+]])
+
 require('onedark').setup {
     style = 'darker'
 }
