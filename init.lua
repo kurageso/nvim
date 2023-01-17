@@ -6,20 +6,19 @@ vim.api.nvim_create_autocmd({"BufWritePost"}, {
   command = "Neoformat",
 })
 
-vim.cmd([[
-augroup vimrc_floaterm
-  autocmd!
-  autocmd QuitPre * FloatermKill!
-augroup END
-]])
+vim.api.nvim_create_augroup("vimrc_floaterm", {})
+vim.api.nvim_create_autocmd({"QuitPre"}, {
+  group = 'vimrc_floaterm',
+  pattern = { '*' },
+  command = 'FloatermKill!'
+})
 
-vim.cmd([[
-augroup Ruby
-  autocmd!
-  autocmd BufNewFile, BufRead *.json.jbuilder set ft=ruby
-augroup END
-]])
-
+vim.api.nvim_create_augroup("ruby", {})
+vim.api.nvim_create_autocmd({"BufNewFile, BufRead"}, {
+  group = "ruby",
+  pattern = "*.json.jbuilder",
+  command = "setft ruby"
+})
 
 vim.cmd([[
   filetype plugin on
