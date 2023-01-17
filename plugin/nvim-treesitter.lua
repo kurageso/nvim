@@ -11,6 +11,7 @@ require("nvim-treesitter.configs").setup({
 		"vim",
 		"vue",
 		"json",
+    "go",
 	},
 	auto_install = true,
 	highlight = {
