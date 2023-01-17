@@ -32,6 +32,9 @@ Plug 'williamboman/mason-lspconfig.nvim'
 Plug('glepnir/lspsaga.nvim', { branch = 'main' })
 Plug 'j-hui/fidget.nvim'
 
+Plug 'ray-x/go.nvim'
+Plug 'ray-x/guihua.lua'
+
 Plug "SmiteshP/nvim-navic"
 
 Plug 'hrsh7th/cmp-nvim-lsp'

@@ -23,6 +23,11 @@ vim.g.vista_icon_indent = {"╰─▸ ", "├─▸ "}
 
 vim.g.neoformat_try_node_exe = 1
 
+require('go').setup({
+  trouble = false,
+  run_in_floaterm = false,
+})
+
 require("vetur-self-closing").setup()
 
 require("hlslens").setup({
