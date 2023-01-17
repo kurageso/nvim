@@ -3,7 +3,11 @@ require("mason-lspconfig").setup()
 
 local navic = require("nvim-navic")
 
-require("lspconfig").gopls.setup({})
+require("lspconfig").gopls.setup({
+  on_attach = function(client, bufnr)
+		navic.attach(client, bufnr)
+	end,
+})
 
 require("lspconfig").solargraph.setup({
 	on_attach = function(client, bufnr)
@@ -33,7 +37,7 @@ require("lspconfig").tsserver.setup({
 	end,
 })
 
-local capabilities = require("cmp_nvim_lsp").default_capabilities
+local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
 require("mason-lspconfig").setup_handlers({
 	function(server_name)
@@ -43,6 +47,4 @@ require("mason-lspconfig").setup_handlers({
 	end,
 })
 
-local saga = require("lspsaga")
-
-saga.init_lsp_saga()
+require("lspsaga").setup({})
