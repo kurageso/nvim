@@ -100,6 +100,9 @@ keymap("n", "]e", "<cmd>Lspsaga diagnostic_jump_next<CR>", { silent = true })
 -- Outline
 keymap("n","<leader>o", "<cmd>LSoutlineToggle<CR>",{ silent = true })
 
+keymap("n", "<space>o", "<cmd>Vista nvim_lsp<CR>", { silent = true })
+keymap("n", "<space>t", "<cmd>TroubleToggle<CR>", { silent = true })
+
 -- Hover Doc
 keymap("n", "K", "<cmd>Lspsaga hover_doc<CR>", { silent = true })
 
