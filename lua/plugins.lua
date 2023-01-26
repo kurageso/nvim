@@ -111,6 +111,7 @@ Plug 'lukas-reineke/indent-blankline.nvim' -- インデントをわかりやす�
 
 -- colorscheme
 Plug 'navarasu/onedark.nvim'
+Plug 'rebelot/kanagawa.nvim'
 
 Plug 'previm/previm'
 
